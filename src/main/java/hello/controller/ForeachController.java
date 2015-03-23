@@ -1,6 +1,6 @@
 package hello.controller;
 
-import hello.Body;
+import hello.vo.Skill;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -23,27 +23,21 @@ public class ForeachController {
 	public String fortest(
 			@RequestParam(value = "type", required = true) String type,
 			Model model) {
-		List<Body> test = readTxtFile(type);
-
-		for (Body temp : readPassive()) {
-			System.out.println(temp.getTest1());
-			System.out.println(temp.getTest2());
-			System.out.println(temp.getTest3());
-		}
-
-		model.addAttribute("testList", test);
-		model.addAttribute("passive", readPassive());
+		List<Skill> test = readTxtFile(type);
+	
+		model.addAttribute("skillList", test);
+		model.addAttribute("passiveList", readPassive());
 		return "fortest";
 	}
 
-	public List<Body> readPassive() {
-		List<Body> passive = readTxtFile("passive");
+	public List<Skill> readPassive() {
+		List<Skill> passive = readTxtFile("passive");
 
 		return passive;
 	}
 
-	public List<Body> readTxtFile(String filename) {
-		List<Body> output = new ArrayList<Body>();
+	public List<Skill> readTxtFile(String filename) {
+		List<Skill> output = new ArrayList<Skill>();
 
 		Resource resource = new ClassPathResource("/data/" + filename + ".txt");
 		try {
@@ -52,20 +46,23 @@ public class ForeachController {
 			String line;
 
 			while ((line = br.readLine()) != null) {
-				Body temp = new Body();
+				Skill skillData = new Skill();
 				StringTokenizer str = new StringTokenizer(line, "|");
 
 				if (str.countTokens() > 1) {
-					temp.setTest1(str.nextToken());
-					temp.setTest2(str.nextToken());
-					temp.setTest3(str.nextToken());
-					output.add(temp);
+					skillData.setSkillImg(str.nextToken());
+					skillData.setSkillName(str.nextToken());
+					skillData.setSkillNowLvl(0);
+					skillData.setSkillMaxLvl(Integer.parseInt(str.nextToken()));
+					skillData
+							.setSkillLvlPoint(Integer.parseInt(str.nextToken()));
+					skillData.setSkillDesc(str.nextToken());
+					output.add(skillData);
 				}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 		return output;
 	}
 }

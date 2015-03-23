@@ -29,18 +29,18 @@
 		style="position: absolute; visibility: visible;">
 		<thead>
 		</thead>
-		<tbody th:each="body : ${testList}">
+		<tbody th:each="item : ${skillList}">
 			<tr>
-				<td rowspan="2">Img</td>
-				<td colspan="2" th:text="${body.test1}">Test1</td>
+				<td rowspan="2" th:text="${item.skillImg}">SkillImage</td>
+				<td colspan="2" th:text="${item.skillName}">SkillName</td>
 				<td><input type="button"
-					th:onclick="'alert(\'' + ${body.test1} + '\');'" value="+" /></td>
+					th:onclick="'alert(\'' + ${item.skillName} + '\');'" value="+" />LvlUp</td>
 			</tr>
 			<tr>
-				<td th:text="${body.test2}">Test2</td>
-				<td th:text="${body.test3}">Test3</td>
+				<td th:text="${item.skillLvlPoint}">SkillPoint</td>
+				<td th:text="${item.skillNowLvl}">SkillLvl</td>
 				<td><input type="button"
-					th:onclick="'alert(\'' + ${body.test3} + '\');'" value="-" /></td>
+					th:onclick="'alert(\'' + ${item.skillNowLvl} + '\');'" value="-" />LvlDown</td>
 			</tr>
 		</tbody>
 	</table>
@@ -48,18 +48,18 @@
 		style="position: absolute; visibility: hidden;">
 		<thead>
 		</thead>
-		<tbody th:each="body : ${passive}">
+		<tbody th:each="item : ${passiveList}">
 			<tr>
-				<td rowspan="2">Img</td>
-				<td colspan="2" th:text="${body.test1}">Test1</td>
+				<td rowspan="2" th:text="${item.skillImg}">SkillImage</td>
+				<td colspan="2" th:text="${item.skillName}">SkillName</td>
 				<td><input type="button"
-					th:onclick="'alert(\'' + ${body.test1} + '\');'" value="+" /></td>
+					th:onclick="'alert(\'' + ${item.skillName} + '\');'" value="+" />LvlUp</td>
 			</tr>
 			<tr>
-				<td th:text="${body.test2}">Test2</td>
-				<td th:text="${body.test3}">Test3</td>
+				<td th:text="${item.skillLvlPoint}">SkillPoint</td>
+				<td th:text="${item.skillNowLvl}">SkillLvl</td>
 				<td><input type="button"
-					th:onclick="'alert(\'' + ${body.test3} + '\');'" value="-" /></td>
+					th:onclick="'alert(\'' + ${item.skillNowLvl} + '\');'" value="-" />LvlDown</td>
 			</tr>
 		</tbody>
 	</table>
