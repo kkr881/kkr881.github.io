@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>thymeleaf Foreach Test</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript">
+	function view_skill(mainId, subId) {
+		var mainObj = document.getElementById(mainId);
+		var subObj = document.getElementById(subId);
+		
+		mainObj.style.visibility = "visible";
+		subObj.style.visibility = "hidden";	
+	}
+	function view_passive(mainId, subId) {
+		var mainObj = document.getElementById(mainId);
+		var subObj = document.getElementById(subId);
+
+		mainObj.style.visibility = "hidden";
+		subObj.style.visibility = "visible";
+	}
+</script>
+</head>
+<body>
+	<input type="button" onclick="view_skill('skill', 'passive')"
+		value="Skill" />
+	<input type="button" onclick="view_passive('skill', 'passive')"
+		value="Passive" />
+	<table id="skill" border="1"
+		style="position: absolute; visibility: visible;">
+		<thead>
+		</thead>
+		<tbody th:each="body : ${testList}">
+			<tr>
+				<td rowspan="2">Img</td>
+				<td colspan="2" th:text="${body.test1}">Test1</td>
+				<td><input type="button"
+					th:onclick="'alert(\'' + ${body.test1} + '\');'" value="+" /></td>
+			</tr>
+			<tr>
+				<td th:text="${body.test2}">Test2</td>
+				<td th:text="${body.test3}">Test3</td>
+				<td><input type="button"
+					th:onclick="'alert(\'' + ${body.test3} + '\');'" value="-" /></td>
+			</tr>
+		</tbody>
+	</table>
+	<table id="passive" border="1"
+		style="position: absolute; visibility: hidden;">
+		<thead>
+		</thead>
+		<tbody th:each="body : ${passive}">
+			<tr>
+				<td rowspan="2">Img</td>
+				<td colspan="2" th:text="${body.test1}">Test1</td>
+				<td><input type="button"
+					th:onclick="'alert(\'' + ${body.test1} + '\');'" value="+" /></td>
+			</tr>
+			<tr>
+				<td th:text="${body.test2}">Test2</td>
+				<td th:text="${body.test3}">Test3</td>
+				<td><input type="button"
+					th:onclick="'alert(\'' + ${body.test3} + '\');'" value="-" /></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
